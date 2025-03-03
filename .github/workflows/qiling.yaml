@@ -70,15 +70,17 @@ jobs:
       
       - name: 'Test'
         run: |
-          ln -s `realpath ./qiling` /tmp/qiling
-          cd /tmp/qiling
+          pushd .
+          cd qiling
           cd examples
           rm -rf rootfs
           wget https://github.com/qilingframework/rootfs/archive/refs/heads/master.zip
           unzip master.zip && mv rootfs-master rootfs
           cd ../qiling
           cd ../examples/rootfs/x86_linux/kernel && unzip -P infected m0hamed_rootkit.ko.zip
-          cd ../../../../tests && ./test_onlinux.sh
+          popd
+          mv qiling/ /tmp
+          cd /tmp/qiling/tests && ./test_onlinux.sh
       
       - name: 'Notification'
         run: echo "::notice title=$QILING_REPO $QILING_REVISION works with $UNICORN_REPO $UNICORN_REVISION"
