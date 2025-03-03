@@ -70,7 +70,8 @@ jobs:
       
       - name: 'Test'
         run: |
-          cd qiling
+          ln -s `realpath ./qiling` /tmp/qiling
+          cd /tmp/qiling
           cd examples
           rm -rf rootfs
           wget https://github.com/qilingframework/rootfs/archive/refs/heads/master.zip
