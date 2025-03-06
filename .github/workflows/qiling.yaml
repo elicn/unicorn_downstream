@@ -28,8 +28,6 @@ on:
         required: true
         default: '3.10'
         type: string
-  schedule:
-    - cron: '5 4 * * *'
 
 env:
   # Specify build type either according to the tag release or manual override
